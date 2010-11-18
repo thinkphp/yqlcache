@@ -6,12 +6,12 @@ A simple wrapper for YQL to support local storage.
 Use like this:
 
 yqlcache.get({
-   yql: "select title,link from rss where url='http://feeds.feedburner.com/nczonline'",
-   id: 'rssncz',
-   cacheage: (60*60*1000),
-   callback: function(data) {
+yql: "select title,link from rss where url='http://feeds.feedburner.com/nczonline'",
+id: 'rssncz',
+cacheage: (60*60*1000),
+callback: function(data) {
        console.log(data); 
-   }
+}
 });
 
 yql - the YQL statement

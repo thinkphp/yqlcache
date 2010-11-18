@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<title>Get RSS using yqlcache</title>
+<style type="text/css">
+html,body{font-family: georgia, verdana, sans-serif;font-size: 15px;margin: 20px}
+ul,ul li{margin:0;padding:0;list-style:square;}
+h2{background: #393;color: #000;padding: 5px}
+ul li {padding: 4px}
+ul li a {color: #393}
+</style>
+</head>
+<body>
+<h1>YQL Localcache</h1>
+<div id="status"></div>
+<pre><code>
+yqlcache.get({
+    yql: "select title,link from rss where url='http://feeds.feedburner.com/nczonline'",
+    id: 'rsszakas',
+    cacheage: (60*60*1000),
+    callback: function(resp) {
+        if(window.console) {console.log(resp);}
+        var entries = resp.data.item,
+            n = entries.length,
+            out = ''; 
+        for(var i=0; i < n; i++) {
+            var title = entries[i].title,
+                link = entries[i].link;
+                out += '&lt;li&gt;&lt;a href="'+link+'"&gt;'+title+'&lt;/li&gt;';
+        }
+        document.getElementById('feed').innerHTML = out; 
+        document.getElementById('status').innerHTML = "Status: " + resp.type; 
+    } 
+});
+</code></pre>
+<div id="status"></div>
+<h2>RSS Nicholas Zakas</h2>
+<ul id="feed"></ul>
+<script type="text/javascript" src="yqlcache-min.js"></script>
+<script type="text/javascript">
+yqlcache.get({
+    yql: "select title,link from rss where url='http://feeds.feedburner.com/nczonline'",
+    id: 'rsszakas',
+    cacheage: (60*60*1000),
+    callback: function(resp) {
+        if(window.console) {console.log(resp);}
+        var entries = resp.data.item,
+            n = entries.length,
+            out = ''; 
+        for(var i=0 ; i < n; i++) {
+            var title = entries[i].title,
+                link = entries[i].link;
+                out += '<li><a href="'+link+'">'+title+'</li>';
+        }
+        document.getElementById('feed').innerHTML = out; 
+        document.getElementById('status').innerHTML = "Status: " + resp.type; 
+    } 
+});
+</script>
+</body>
+</html>
+

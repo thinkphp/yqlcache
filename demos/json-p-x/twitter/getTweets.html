@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<title>Get Tweets using JSON-P-X and yqlcache</title>
+<style type="text/css">
+* {margin:0;padding:0;}
+div#content_tweets{width: 500px}
+ol.statuses {font-size:14px;list-style:none outside none;}
+ol.statuses > li:first-child {border-top:0 none;}
+ol.statuses li.latest-status {
+border-top-width:0;
+line-height:1.5em;
+padding:1.5em 0 1.5em 0.5em;}
+ol.statuses li {
+padding-left:0.5em;}
+ol.statuses li {line-height:20px;}
+.meta {color:#999999;display:block;font-size:11px;}
+ol.statuses li.status, ol.statuses li.direct_message {border-bottom:1px solid #EEEEEE;line-height:20px;padding:10px 0 8px;position:relative;}
+ol.statuses .latest-status .entry-content {font-size:1.77em;}
+div#content_tweets {padding:0 260px;}
+div#content_tweets {word-wrap:break-word;}
+li:hover {background: #F7F7F7}
+a{color: #2FC2EF}
+h1{text-align: center;margin-bottom: 40px;margin-top: 10px}
+h2.thumb {padding-bottom:20px;padding-left: 260px}
+</style>
+</head>
+<body>
+<h1>Get Tweets using JSON-P-X and yqlcache</h1>
+<div id="avatar"><h2 class="thumb">Loading...</h2></div>
+<div id="content_tweets">Loading...</div>
+<script type="text/javascript" src="yqlcache.js"></script>
+<script type="text/javascript">
+var user = "codepo8";
+var yql1 = 'select * from html where url="http://twitter.com/'+user+'" and xpath="//h2[@class=\'thumb clearfix\']" limit 1';
+yqlcache.get({
+   yql: yql1,
+   id: 'avatarcodepo8',
+   cacheage: (10*60*1000),
+   callback: function(resp) {
+         if(window.console) {console.log(resp.type);}
+         document.getElementById('avatar').innerHTML = resp.data;
+         var yql2 = 'select * from html where url="http://twitter.com/'+user+'" and xpath="//ol[@id=\'timeline\']"';
+         yqlcache.get({
+           yql: yql2,
+           id: 'codepotweets',
+           cacheage: (60*60*1000),
+           callback: function(resp) {
+                if(window.console) {console.log(resp.type);}
+                document.getElementById('content_tweets').innerHTML = resp.data;
+           } 
+          });
+   } 
+});
+</script>
+</body>
+</html>
+

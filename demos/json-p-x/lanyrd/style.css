@@ -1,0 +1,17 @@
+div#spoken{
+ background: #eef;
+ border: 1px solid #999;
+ padding: 5px;
+ -moz-border-radius:5px;
+ -wekbit-border-radius:5px;
+ border-radius:5px;
+ width:20em;
+ height: 300px;
+ overflow: auto;
+}
+#lanyrd a{color:#000;}
+
+div#spoken img{height: 16px;vertical-align: middle;width: 16px}
+
+#ft{font-size:80%;color:#888;margin:0;font-size: 16px;padding:0;text-align: left}
+#ft p a{color:#2FC2EF;}

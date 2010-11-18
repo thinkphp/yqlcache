@@ -1,0 +1,1 @@
+check this out: [http://thinkphp.github.com/yqlcache/](http://thinkphp.github.com/yqlcache/)

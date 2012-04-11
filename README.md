@@ -27,6 +27,6 @@ The returned data in the callback is an object with two properties:
            or 'live' when caching is not available.
 
 
-Demos: [http://thinkphp.ro/apps/js-hacks/yqlcache/demos/](http://thinkphp.ro/apps/js-hacks/yqlcache/demos/)
+Demos: [http://thinkphp.ro/apps/js-hacks/YQL%20Utilities/YQLCache/](http://thinkphp.ro/apps/js-hacks/YQL%20Utilities/YQLCache/)
             
                               
